@@ -5,20 +5,25 @@ public class Refactorable {
 	private String _name = "Customer Name";
 	
 	void printOwing() {
-		Enumeration<E> e = _orders.elements();
+		Enumeration <E> e = _orders.elements();
 		double outstanding = 0.0;
 		
 		// print banner
 		printBanner();
 		
 		// calculate outstanding
+		outstanding = calculateOutstanding(e, outstanding);
+		
+		// print details
+		printDetails(outstanding);
+	}
+
+	public double calculateOutstanding(Enumeration<E> e, double outstanding) {
 		while(e.hasMoreElements()){
 			Order each = (Order) e.nextElement();
 			outstanding += each.getAmount();
 		}
-		
-		// print details
-		printDetails(outstanding);
+		return outstanding;
 	}
 
 	public void printDetails(double outstanding) {
